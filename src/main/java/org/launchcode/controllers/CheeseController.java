@@ -20,7 +20,7 @@ import java.util.List;
  * Created by LaunchCode
  */
 @Controller
-@RequestMapping("cheese")
+@RequestMapping(value = "cheese")
 public class CheeseController {
 
     @Autowired

@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * Created by rober on 4/10/2017.
  */
 @Controller
-@RequestMapping("category")
+@RequestMapping(value = "category")
 public class CategoryController {
 
     @Autowired
