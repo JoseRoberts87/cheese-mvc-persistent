@@ -10,7 +10,6 @@
 
 <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
 
-
 <table class="table">
 
     <tr>
@@ -22,10 +21,14 @@
     <tr th:each="cheese : ${cheeses}">
         <td th:text="${cheese.name}"></td>
         <td th:text="${cheese.description}"></td>
+        <!--TODO need to add ${cheese.category.name} it fails currently-->
         <td th:text="${cheese.category.name}"></td>
     </tr>
 
 </table>
+
+    <a href="/cheese/add">Add</a> |
+    <a href="/cheese/remove">Remove</a>
 
 </body>
 </html>

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 /**
  * Created by rober on 4/11/2017.
  */
@@ -29,7 +31,7 @@ public class MenuController {
 
     @RequestMapping(value = "")
     public String index(Model model){
-        model.addAttribute("titel", "Menus");
+        model.addAttribute("title", "Menus");
         model.addAttribute("menus", menuDao.findAll());
         model.addAttribute(new Menu());
         return "menu/index";
@@ -43,7 +45,7 @@ public class MenuController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute Menu menu, Errors errors){
+    public String add(Model model, @ModelAttribute @Valid Menu menu, Errors errors){
 
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Menu");
@@ -71,7 +73,8 @@ public class MenuController {
         Menu menu = menuDao.findOne(menuId);
 
         AddMenuItemForm form = new AddMenuItemForm(
-                cheeseDao.findAll(), menu);
+                cheeseDao.findAll(),
+                menu);
         model.addAttribute("title", "Add item to menu: " + menu.getName());
         model.addAttribute("form", form);
         return "menu/add-item";

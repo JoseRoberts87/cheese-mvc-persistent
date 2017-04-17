@@ -37,7 +37,7 @@ public class CheeseController {
         model.addAttribute("title", "My Cheeses");
 
         return "cheese/index";
-    }
+}
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model) {
@@ -57,7 +57,6 @@ public class CheeseController {
             model.addAttribute("categories", categoryDao.findAll());
             return "cheese/add";
         }
-
         Category cat = categoryDao.findOne(categoryId);
         newCheese.setCategory(cat);
         cheeseDao.save(newCheese);
@@ -82,15 +81,12 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "category", method = RequestMethod.GET)
-    public String category(Model model, CategoryDao categoryDao,
-                           @RequestParam int categoryId,
-                           @RequestParam int id){
+    public String category(Model model, @RequestParam int id){
 
         Category cat = categoryDao.findOne(id);
         List<Cheese> cheeses = cat.getCheeses();
         model.addAttribute("cheeses", cheeses);
         model.addAttribute("title", "Cheese in Category" + cat.getName());
-//        model.addAttribute("cheeses", cheeseDao.findAll((Iterable<Integer>) categoryDao.findOne(categoryId)));
         return "cheese/index";
     }
 

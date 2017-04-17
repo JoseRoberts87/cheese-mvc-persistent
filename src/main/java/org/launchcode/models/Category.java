@@ -28,7 +28,6 @@ public class Category {
 
     public Category(String name){
         this.name = name;
-
     }
 
     public String getName() {
@@ -50,4 +49,8 @@ public class Category {
     public void setCheeses(List<Cheese> cheeses) {
         this.cheeses = cheeses;
     }
+
+
+
+
 }
